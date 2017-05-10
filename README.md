@@ -7,3 +7,12 @@ python tripos.py -c1 {coord 1} -c2 {coord 2} -c3 {coord 3}
 Example:
 
 python tripos.py -c1 40.32,-3.8500 -c2 40.32,-3.8400 -c3 40.35,-3.85
+
+## Requirements
+
+
+Install libraries for map representation: 
+
+git clone https://github.com/matplotlib/basemap && cd basemap && python setup.py install
+
+sudo pip install pyproj
