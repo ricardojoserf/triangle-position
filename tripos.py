@@ -39,7 +39,7 @@ def getCoords(args):
 	D1 = vincenty(c1,c2).kilometers
 	D2 = vincenty(c1,c3).kilometers
 
-	if(D1>(r1+r2) or D2>(r1+r3)): print("D1>(r1+r2) or D2>(r1+r3)")
+	if(D1>(r1+r2) or D2>(r1+r3)): print("D1>(r1+r2) or D2>(r1+r3)  D1="+str(D1)+" D2="+str(D2) ); return
 
 	h1 = getHeight(D=D1,r1=r1,r2=r2)
 	n1 = getCat(hip=r1,cat=h1)
@@ -47,18 +47,19 @@ def getCoords(args):
 	h2 = getHeight(D=D2,r1=r1,r2=r3)
 	m2 = getCat(hip=r1,cat=h2)
 
-	gradeKmLat = vincenty(float(c1[0]), float(c1[0])+1).kilometers
-	gradeKmLon = vincenty(float(c1[0]), float(c1[1])+1).kilometers
+	gradeKmLat = vincenty( c1, (float(c1[0]) + 1, float(c1[0])) ).kilometers
+	gradeKmLon = vincenty( c1, (float(c1[0]), float(c1[0]) +1 ) ).kilometers
+
 	
 	newLat = float(c1[0]) + (n1/gradeKmLat)
 	newLon = float(c1[1]) + (m2/gradeKmLon)
 	newCoord= (newLat,newLon)
 
-	# print("D1 = "+str(D1)+"  \nD2 = "+str(D2)+"\nn1 = "+str(n1)+"\nm2 = "+str(m2) + "\ngradeKmLat = "+str(gradeKmLat)+"\ngradeKmLon = "+str(gradeKmLon))	
+	print("D1 = "+str(D1)+"  \nD2 = "+str(D2)+"\nn1 = "+str(n1)+"\nm2 = "+str(m2) + "\ngradeKmLat = "+str(gradeKmLat)+"\ngradeKmLon = "+str(gradeKmLon))	
 	print ("c1 = ("+args.coordenadas1+") \nc2 = ("+args.coordenadas2+") \nc3 = ("+args.coordenadas3+") \nc0 = ("+str(newCoord)+")")
 
-	deg_diff=0.05
-	m = Basemap(llcrnrlon=(float(c1[1])-deg_diff),llcrnrlat=(float(c1[0])-deg_diff),urcrnrlon=(float(c1[1])+deg_diff),urcrnrlat=(float(c1[0])+deg_diff), epsg=5520)
+	deg_diff=0.03
+	m = Basemap(llcrnrlon=(float(c1[1])),llcrnrlat=(float(c1[0])-deg_diff),urcrnrlon=(float(c1[1])+deg_diff ),urcrnrlat=(float(c3[0]) +deg_diff), epsg=5520)
 	#http://server.arcgisonline.com/arcgis/rest/services
 	m.arcgisimage(service='ESRI_StreetMap_World_2D', xpixels = 1500, verbose= False)
 	
@@ -67,10 +68,7 @@ def getCoords(args):
 	drawPoint(c3[0],c3[1],m)
 	drawPoint(newCoord[0],newCoord[1],m)
 	
-	plt.text(c1[0],c1[1],"c1")
-	plt.text(c2[0],c2[1],"c2")
-	plt.text(c3[0],c3[1],"c3")
-	plt.text(newCoord[0],newCoord[1],"c0")
+
 
 	# plt.text(xpt+100000,ypt+100000,'Boulder (%5.1fW,%3.1fN)' % (lonpt,latpt))
 	plt.show()
