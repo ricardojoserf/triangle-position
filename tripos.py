@@ -21,6 +21,11 @@ def get_args():
 	my_args = parser.parse_args()
 	return my_args
 
+def drawPoint(lat,lon,map_):
+	xpt,ypt = map_(lon,lat)
+	lonpt, latpt = map_(xpt,ypt,inverse=True)
+	map_.plot(xpt,ypt,'bo')
+
 
 def getCoords(args):
 	
@@ -52,37 +57,22 @@ def getCoords(args):
 	# print("D1 = "+str(D1)+"  \nD2 = "+str(D2)+"\nn1 = "+str(n1)+"\nm2 = "+str(m2) + "\ngradeKmLat = "+str(gradeKmLat)+"\ngradeKmLon = "+str(gradeKmLon))	
 	print ("c1 = ("+args.coordenadas1+") \nc2 = ("+args.coordenadas2+") \nc3 = ("+args.coordenadas3+") \nc0 = ("+str(newCoord)+")")
 
+	deg_diff=0.05
+	m = Basemap(llcrnrlon=(float(c1[1])-deg_diff),llcrnrlat=(float(c1[0])-deg_diff),urcrnrlon=(float(c1[1])+deg_diff),urcrnrlat=(float(c1[0])+deg_diff), epsg=5520)
+	#http://server.arcgisonline.com/arcgis/rest/services
+	m.arcgisimage(service='ESRI_StreetMap_World_2D', xpixels = 1500, verbose= False)
 	
+	drawPoint(c1[0],c1[1],m)
+	drawPoint(c2[0],c2[1],m)
+	drawPoint(c3[0],c3[1],m)
+	drawPoint(newCoord[0],newCoord[1],m)
+	
+	plt.text(c1[0],c1[1],"c1")
+	plt.text(c2[0],c2[1],"c2")
+	plt.text(c3[0],c3[1],"c3")
+	plt.text(newCoord[0],newCoord[1],"c0")
 
-
-	# setup Lambert Conformal basemap.
-	m = Basemap(width=12000000,height=9000000,projection='lcc',
-	            resolution='c',lat_1=45.,lat_2=55,lat_0=50,lon_0=-107.)
-	# draw a boundary around the map, fill the background.
-	# this background will end up being the ocean color, since
-	# the continents will be drawn on top.
-	m.drawmapboundary(fill_color='aqua')
-	# fill continents, set lake color same as ocean color.
-	m.fillcontinents(color='coral',lake_color='aqua')
-	# draw parallels and meridians.
-	# label parallels on right and top
-	# meridians on bottom and left
-	parallels = np.arange(0.,81,10.)
-	# labels = [left,right,top,bottom]
-	m.drawparallels(parallels,labels=[False,True,True,False])
-	meridians = np.arange(10.,351.,20.)
-	m.drawmeridians(meridians,labels=[True,False,False,True])
-	# plot blue dot on Boulder, colorado and label it as such.
-	lon, lat = -104.237, 40.125 # Location of Boulder
-	# convert to map projection coords.
-	# Note that lon,lat can be scalars, lists or numpy arrays.
-	xpt,ypt = m(lon,lat)
-	# convert back to lat/lon
-	lonpt, latpt = m(xpt,ypt,inverse=True)
-	m.plot(xpt,ypt,'bo')  # plot a blue dot there
-	# put some text next to the dot, offset a little bit
-	# (the offset is in map projection coordinates)
-	plt.text(xpt+100000,ypt+100000,'Boulder (%5.1fW,%3.1fN)' % (lonpt,latpt))
+	# plt.text(xpt+100000,ypt+100000,'Boulder (%5.1fW,%3.1fN)' % (lonpt,latpt))
 	plt.show()
 
 
