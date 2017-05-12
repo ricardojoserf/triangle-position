@@ -73,6 +73,15 @@ def getNewCoord(baseCoord,x_,y_):
 	newLon = float(baseCoord[1]) + (float(y_)/float(gradeKmLon) )
 	return (newLat,newLon)
 
+def checkRatiosInside(ratios,D_diag_1,D_diag_2):
+	mal=False
+	for i in ratios:
+		if ( i > D_diag_1 or i > D_diag_2 ):
+			mal = True
+			print ("Point is not inside")
+	if(mal==False):
+		print("Point is inside")
+
 
 def getCoords(args):
 	# Coordinates
@@ -95,11 +104,10 @@ def getCoords(args):
 	D_diag_1 = vincenty(c1,c3).kilometers
 	D_diag_2 = vincenty(c2,c4).kilometers
 
-	# if(D1>(r1+r2) or D2>(r2+r3) or D3>(r3+r4) or D4>(r1+r4) or D_diag_1>(r1+r3) or D_diag_2>(r2+r4) ):
-	#if(D1>(r1+r2) or D2>(r2+r3) or D3>(r3+r4) or D4>(r1+r4) ):
-	#	print("D1>(r1+r2) or D2>(r2+r3) or D3>(r3+r4) or D4>(r1+r4) or D_diag_1>(r1+r3) or D_diag_2>(r2+r4) ")
-	#	print("D1="+str(D1)+" \nD2="+str(D2)+" \nD3="+str(D3)+" \nD4="+str(D4)+" \nD_diag_1="+str(D_diag_1)+" \nD_diag_2="+str(D_diag_2) )
-	#	return
+	if(D1>(r1+r2) or D2>(r2+r3) or D3>(r3+r4) or D4>(r1+r4) or D_diag_1>(r1+r3) or D_diag_2>(r2+r4) ):
+		print("D1>(r1+r2) or D2>(r2+r3) or D3>(r3+r4) or D4>(r1+r4) or D_diag_1>(r1+r3) or D_diag_2>(r2+r4) ")
+		print("D1="+str(D1)+" \nD2="+str(D2)+" \nD3="+str(D3)+" \nD4="+str(D4)+" \nD_diag_1="+str(D_diag_1)+" \nD_diag_2="+str(D_diag_2) )
+		return
 	
 	# Heights
 	h1 = getHeight(D=D1,rA=r1,rB=r2)
@@ -131,13 +139,8 @@ def getCoords(args):
 	base_coords = [c1,c2,c3,c4]
 	calculated_coords = [newCoord_1,newCoord_2,newCoord_3,newCoord_4]
 	ratios=[r1,r2,r3,r4]
-
+	checkRatiosInside(ratios,D_diag_1,D_diag_2)
 	drawMap(base_coords,calculated_coords,ratios)
-
-	#drawMap(base_coords, [newCoord_1])
-	#drawMap(base_coords, [newCoord_2])
-	#drawMap(base_coords, [newCoord_3])
-	#drawMap(base_coords, [newCoord_4])
 
 
 
