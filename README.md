@@ -1,13 +1,12 @@
 # triangle-position
 Triangle position given 3 coordinates and 3 radios or 4 coordinates and 4 radios
 
-## Usage
 
-### 3 coordinates
+## 3 coordinates
 
 *python main.py -c1 {coord_1} -c2 {coord_2} -c3 {coord_3} -r1 {ratio_1} -r2 {ratio_2} -r3 {ratio_3}*
 
-Example 1:
+#### Example 1:
 
 *python tripos.py -c1 40.443580,-3.727077 -c2 40.452052,-3.725831 -c3 40.451418,-3.717722 -r1 0.65 -r2 0.75 -r3 0.65*
 
@@ -17,7 +16,7 @@ Result:
 
 ![Screenshot](images/tri1.png)
 
-Example 2, changing C3:
+#### Example 2, changing C3:
 
 *python tripos.py -c1 40.443580,-3.727077 -c2 40.452052,-3.725831 -c3 40.443587,-3.715664 -r1 0.65 -r2 0.75 -r3 0.65*
 
@@ -28,7 +27,7 @@ Result:
 ![Screenshot](images/tri3.png)
 
 
-### 4 coordinates
+## 4 coordinates
 *python main.py -c1 {coord_1} -c2 {coord_2} -c3 {coord_3} -c4 {coord_4} -r1 {ratio_1} -r2 {ratio_2} -r3 {ratio_3} -r4 {ratio_4}*
 
 Example:
