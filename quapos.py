@@ -3,7 +3,8 @@ from geopy.distance import vincenty, great_circle
 from mpl_toolkits.basemap import Basemap
 import matplotlib.pyplot as plt
 import numpy as np
-import matplotlib.patches as patches
+#import matplotlib.patches as patches
+from matplotlib.patches import Polygon
 
 
 def get_args():
@@ -37,24 +38,29 @@ def generateCoord(coord_string):
 	return( (lat,lon) )
 
 
+
+
 def drawMap(base_coords,calculated_coords,ratios):
 	deg_diff=1.5
 	m = Basemap(llcrnrlon=(float(base_coords[3][1])),llcrnrlat=(float(base_coords[3][0])-deg_diff),urcrnrlon=(float(base_coords[3][1])+deg_diff ),urcrnrlat=(float(base_coords[3][0]) +deg_diff), epsg=5520)
 	m.arcgisimage(service='ESRI_StreetMap_World_2D', xpixels = 1500, verbose= False)
+
 	#Paint coords
 	colors = ['red','green','blue','purple']
 	counter = 0
 	for coord in base_coords:
 		drawPoint(coord[0],coord[1],m,colors[counter])
 		counter+=1
+	#Paint polygon
+	lats = []
+	lons = []
 	for coord in calculated_coords:
-		drawPoint(coord[0],coord[1],m,'y')
-	#for coord in base_coords:
-	# circle = patches.Circle((0,0),1, color='g')
-	# fig6 = plt.figure()
-	# ax6 = fig6.add_subplot(111, aspect='equal')
-	# ax6.add_patch(circle)
-	# fig6.savefig('circle6.png', dpi=90, bbox_inches='tight')
+		lats.append(coord[0])
+		lons.append(coord[1])
+	x,y = m(lons,lats)
+	xy = zip(x,y)
+	poly = Polygon( xy, facecolor='yellow', alpha=0.4 )
+	plt.gca().add_patch(poly)
 	plt.show()
 
 
@@ -154,7 +160,7 @@ def getCoords(args):
 		print("\nVerbose: True")
 		print("\nD1="+str(D1)+" \nD2="+str(D2)+" \nD3="+str(D3)+" \nD4="+str(D4)+" \nD_diag_1="+str(D_diag_1)+" \nD_diag_2="+str(D_diag_2) )
 		print ("\n[Red]\t c1 = ("+args.coordenadas1+") \n[Green]\t c2 = ("+args.coordenadas2+") \n[Blue]\t c3 = ("+args.coordenadas3+") \n[Purple] c4 = ("+args.coordenadas4+")")
-		print ("\n[Yellow] newCoord_1 = ("+str(newCoord_1)+"\n[Yellow] newCoord_2 = ("+str(newCoord_2)+"\n[Yellow] newCoord_3 = ("+str(newCoord_3)+"\n[Yellow] newCoord_4 = ("+str(newCoord_4) )
+		print ("\n[Yellow] newCoord_1 = "+str(newCoord_1)+"\n[Yellow] newCoord_2 = "+str(newCoord_2)+"\n[Yellow] newCoord_3 = "+str(newCoord_3)+"\n[Yellow] newCoord_4 = "+str(newCoord_4) )
 		checkRatiosInside(ratios,D_diag_1,D_diag_2)
 	
 	drawMap(base_coords,calculated_coords,ratios)
