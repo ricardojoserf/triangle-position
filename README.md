@@ -3,7 +3,7 @@ Triangle position given 4 coordinates and 4 radios
 
 ## Usage
 
-*python main.py -c1 {coord 1} -c2 {coord 2} -c3 {coord 3}*
+*python main.py -c1 {coord_1} -c2 {coord_2} -c3 {coord_3} -c4 {coord_4} -r1 {ratio_1} -r2 {ratio_2} -r3 {ratio_3} -r4 {ratio_4}*
 
 Example:
 
