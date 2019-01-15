@@ -82,6 +82,27 @@ def checkRatiosInside(ratios,D_diag_1,D_diag_2):
 	if(mal==False):
 		print("Point is inside")
 
+def checkValues(r1, r2, r3, r4, D1, D2, D3, D4, D_diag_1, D_diag_2):
+	if(D1>(r1+r2)):
+		print("\nProblem: D1>(r1+r2)")
+	
+	if(D2>(r2+r3)):
+		print("\nProblem: D2>(r2+r3)")
+	
+	if(D3>(r3+r4)):
+		print("\nProblem: D3>(r3+r4)")
+	
+	if(D4>(r1+r4)):
+		print("\nProblem: D4>(r1+r4)")
+	
+	if(D_diag_1>(r1+r3)):
+		print("\nProblem: D_diag_1>(r1+r3)")
+	
+	if(D_diag_2>(r2+r4)):
+		print("\nProblem: D_diag_2>(r2+r4) ")
+	
+	print("\nD1="+str(D1)+" \nD2="+str(D2)+" \nD3="+str(D3)+" \nD4="+str(D4)+" \nD_diag_1="+str(D_diag_1)+" \nD_diag_2="+str(D_diag_2) )
+	
 
 def getCoords(args):
 	# Coordinates
@@ -104,10 +125,7 @@ def getCoords(args):
 	D_diag_1 = vincenty(c1,c3).kilometers
 	D_diag_2 = vincenty(c2,c4).kilometers
 
-	if(D1>(r1+r2) or D2>(r2+r3) or D3>(r3+r4) or D4>(r1+r4) or D_diag_1>(r1+r3) or D_diag_2>(r2+r4) ):
-		print("D1>(r1+r2) or D2>(r2+r3) or D3>(r3+r4) or D4>(r1+r4) or D_diag_1>(r1+r3) or D_diag_2>(r2+r4) ")
-		print("D1="+str(D1)+" \nD2="+str(D2)+" \nD3="+str(D3)+" \nD4="+str(D4)+" \nD_diag_1="+str(D_diag_1)+" \nD_diag_2="+str(D_diag_2) )
-		return
+	checkValues(r1, r2, r3, r4, D1, D2, D3, D4, D_diag_1, D_diag_2)
 	
 	# Heights
 	h1 = getHeight(D=D1,rA=r1,rB=r2)
