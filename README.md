@@ -31,6 +31,7 @@ Result:
 
 ![Screenshot](images/tri3.png)
 
+--------------------------------------------
 
 ## 4 coordinates
 *python quapos.py -c1 {coord_1} -c2 {coord_2} -c3 {coord_3} -c4 {coord_4} -r1 {ratio_1} -r2 {ratio_2} -r3 {ratio_3} -r4 {ratio_4}*
@@ -39,14 +40,13 @@ Result:
 
 *python quapos.py -c1 40.443587,-3.715664 -c2 40.451418,-3.717722 -c3 40.452052,-3.725831 -c4 40.443580,-3.727077 -r1 0.47 -r2 0.5 -r3 0.82 -r4 0.785*
 
-![Screenshot](images/quatri1.png)
+![Screenshot](images/quatri2.png)
 
 Result:
 
-![Screenshot](images/quatri2.png)
+![Screenshot](images/quatri1.png)
 
-
-
+--------------------------------------------
 
 ## Requirements
 
@@ -59,7 +59,3 @@ Or:
 *sudo pip install pyproj geopy numpy matplotlib geopy matplotlib*
 
 *sudo pip install https://github.com/matplotlib/basemap/archive/master.zip*
-
-
-
-
