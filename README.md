@@ -12,14 +12,11 @@ python tripos.py -c1 40.32,-3.85 -c2 41.32,-3.85 -c3 41.32,-4.85 -c4 40.32,-4.85
 
 ## Requirements
 
-Install libraries for map representation: 
-
 *sudo apt-get install libgeos-3.6.2 libgeos-dev python-tk*
 
 *sudo pip install pyproj geopy numpy matplotlib geopy matplotlib*
 
 *sudo pip install https://github.com/matplotlib/basemap/archive/master.zip*
 
-*git clone https://github.com/matplotlib/basemap && cd basemap && python setup.py install*
 
 
