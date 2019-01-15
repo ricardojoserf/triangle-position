@@ -96,13 +96,14 @@ def checkValues(r1, r2, r3, r4, D1, D2, D3, D4, D_diag_1, D_diag_2):
 		print("\nProblem: D4>(r1+r4)")
 	
 	if(D_diag_1>(r1+r3)):
+		print("D_diag_1= "+D_diag_1)
 		print("\nProblem: D_diag_1>(r1+r3)")
 	
 	if(D_diag_2>(r2+r4)):
 		print("\nProblem: D_diag_2>(r2+r4) ")
 	
 	print("\nD1="+str(D1)+" \nD2="+str(D2)+" \nD3="+str(D3)+" \nD4="+str(D4)+" \nD_diag_1="+str(D_diag_1)+" \nD_diag_2="+str(D_diag_2) )
-	
+
 
 def getCoords(args):
 	# Coordinates
