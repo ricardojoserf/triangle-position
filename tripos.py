@@ -4,6 +4,7 @@ from mpl_toolkits.basemap import Basemap
 import matplotlib.pyplot as plt
 import numpy as np
 import sys
+from plot import drawMap
 
 def get_args():
 	parser = argparse.ArgumentParser()
@@ -34,14 +35,14 @@ def generateCoord(coord_string):
 	return( (lat,lon) )
 
 
-def drawMap(c1,c2,c3,newCoord):
+def drawMap_basemap(c1,c2,c3,calculatedCoord):
 	deg_diff=1.5
 	m = Basemap(llcrnrlon=(float(c1[1])),llcrnrlat=(float(c1[0])-deg_diff),urcrnrlon=(float(c1[1])+deg_diff ),urcrnrlat=(float(c3[0]) +deg_diff), epsg=5520)
 	m.arcgisimage(service='ESRI_StreetMap_World_2D', xpixels = 1500, verbose= False)
 	drawPoint(c1[0],c1[1],m,'r')
 	drawPoint(c2[0],c2[1],m,'g')
 	drawPoint(c3[0],c3[1],m,'b')
-	drawPoint(newCoord[0],newCoord[1],m,'y')
+	drawPoint(calculatedCoord[0],calculatedCoord[1],m,'y')
 	plt.show()
 
 
@@ -97,13 +98,23 @@ def getCoords(args):
 
 	newLat = float(c1[0]) + (float(n1)/float(gradeKmLat) )
 	newLon = float(c1[1]) + (float(m2)/float(gradeKmLon) )
-	newCoord= (newLat,newLon)
+	calculatedCoord= (newLat,newLon)
 
 	#print ("D1 = "+str(D1)+"  \nD2 = "+str(D2)+"  \nD3 = "+str(D3)+"\nn1 = "+str(n1)+"\nm2 = "+str(m2) + "\ngradeKmLat = "+str(gradeKmLat)+"\ngradeKmLon = "+str(gradeKmLon) +"\n")	
-	print("Calulated points:")
-	print ("[Red]\t c1 = ("+args.coordenadas1+") \n[Green]\t c2 = ("+args.coordenadas2+") \n[Blue]\t c3 = ("+args.coordenadas3+") \n[Yellow] c0 = ("+str(newCoord)+")")
-
-	drawMap(c1,c2,c3,newCoord)
+	verbose = True
+	
+	points = [calculatedCoord,c1,c2,c3]
+	try:
+		if verbose:
+			print("Trying to plot results using Plotly")
+		drawMap(points)
+		print ("Calculated points:\nc1 = ("+args.coordenadas1+") \nc2 = ("+args.coordenadas2+") \nc3 = ("+args.coordenadas3+") \ncalculatedCoord = ("+str(calculatedCoord)+")")
+	except:
+		if verbose:
+			print("\nIt was not possible to plot results using Plotly")
+			print("\nTrying to plot results using Matplotlib")
+		print ("Calculated points:\n[Red]\t c1 = ("+args.coordenadas1+") \n[Green]\t c2 = ("+args.coordenadas2+") \n[Blue]\t c3 = ("+args.coordenadas3+") \n[Yellow] calculatedCoord = ("+str(calculatedCoord)+")")
+		drawMap_basemap(c1,c2,c3,calculatedCoord)
 
 
 def main():

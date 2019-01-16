@@ -1,9 +1,8 @@
-import re, time, os, math, argparse
+import re, time, os, math, argparse,sys
 from geopy.distance import vincenty, great_circle
 from mpl_toolkits.basemap import Basemap
 import matplotlib.pyplot as plt
 import numpy as np
-#import matplotlib.patches as patches
 from matplotlib.patches import Polygon
 
 
@@ -107,6 +106,30 @@ def checkValues(r1, r2, r3, r4, D1, D2, D3, D4, D_diag_1, D_diag_2):
 		print("\nProblem: D_diag_2>(r2+r4) ")
 
 
+def reorder(c1,c2,c3,c4,r1,r2,r3,r4):
+	coords = [c1,c2,c3,c4]
+	'''
+	aux1 = coords[0][0]
+	aux2 = coords[1][0]
+	aux3 = max(aux1, aux2)
+	aux4 = min(aux1, aux2)
+	'''
+	lats = []
+	lons = []
+	for coord in coords:
+		lats.append(coord[0])
+		lons.append(coord[1])
+
+	max_lat = max(lats)
+	max_lat_index = lats.index(max_lat)
+	max_lon = max(lons)
+	max_lon_index = lons.index(max_lon)
+
+	print max_lat, max_lat_index
+	print max_lon, max_lon_index
+
+
+
 def getCoords(args):
 	# Coordinates
 	c1 = generateCoord(args.coordenadas1)
@@ -120,6 +143,10 @@ def getCoords(args):
 	r3 = float(args.ratio3)
 	r4 = float(args.ratio4)
 	
+	reorder(c1,c2,c3,c4,r1,r2,r3,r4)
+
+	sys.exit(0)
+
 	# Distances between points	
 	D1 = vincenty(c1,c2).kilometers
 	D2 = vincenty(c2,c3).kilometers
@@ -152,8 +179,8 @@ def getCoords(args):
 	newCoord_4 = getNewCoord(c4,+m3,+n4)
 	
 	base_coords = [c1,c2,c3,c4]
-	calculated_coords = [newCoord_1,newCoord_2,newCoord_3,newCoord_4]
 	ratios=[r1,r2,r3,r4]
+	calculated_coords = [newCoord_1,newCoord_2,newCoord_3,newCoord_4]
 	
 	verbose = True
 	if verbose:

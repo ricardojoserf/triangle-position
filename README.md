@@ -6,7 +6,6 @@ Triangle position given 3 coordinates and 3 radios or 4 coordinates and 4 radios
 - *quapos.py*: triangulate one AREA calculating 4 points from the 4 coordinates + 4 ratios (like executing tripos.py 4 times with 4 coordinates)
 
 
-
 ## 3 coordinates
 
 *python tripos.py -c1 {coord_1} -c2 {coord_2} -c3 {coord_3} -r1 {ratio_1} -r2 {ratio_2} -r3 {ratio_3}*
@@ -17,11 +16,15 @@ Triangle position given 3 coordinates and 3 radios or 4 coordinates and 4 radios
 
 ![Screenshot](images/tri2.png)
 
-Result:
+Result using Plotly:
+
+![Screenshot](images/tri5.png)
+
+Result not using Plotly (Matplotlib does not need Access Token or API KEY is not a good option):
 
 ![Screenshot](images/tri1.png)
 
-#### Example 2, changing C3:
+#### Example 2. Changing C3:
 
 *python tripos.py -c1 40.443580,-3.727077 -c2 40.452052,-3.725831 -c3 40.443587,-3.715664 -r1 0.65 -r2 0.75 -r3 0.65*
 
@@ -48,14 +51,16 @@ Result:
 
 --------------------------------------------
 
-## Requirements
+## Installation
 
-*sudo sh intall.sh*
+- Fill config.py with Plotpy username and API Key
 
-Or:
+- Fill config.py with Mapbox Access Token
+
+- Run *sudo sh intall.sh*. Also you can run:
 
 *sudo apt-get install libgeos-3.6.2 libgeos-dev python-tk*
 
-*sudo pip install pyproj geopy numpy matplotlib geopy matplotlib*
+*sudo pip install pyproj geopy numpy matplotlib geopy matplotlib plotly*
 
 *sudo pip install https://github.com/matplotlib/basemap/archive/master.zip*
