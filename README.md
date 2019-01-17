@@ -57,17 +57,7 @@ Result:
 
 - Fill config.py with Mapbox Access Token
 
-- Run *sudo sh intall.sh*. Also you can run:
-
-``` 
-
-sudo apt-get install libgeos-3.6.2 libgeos-dev python-tk
-
-sudo pip install pyproj geopy numpy matplotlib geopy matplotlib plotly
-
-sudo pip install https://github.com/matplotlib/basemap/archive/master.zip
-
-``` 
+- Run *sudo sh intall.sh* to install dependencies
 
 
 ## Note
