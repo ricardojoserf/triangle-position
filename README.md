@@ -68,3 +68,8 @@ sudo pip install pyproj geopy numpy matplotlib geopy matplotlib plotly
 sudo pip install https://github.com/matplotlib/basemap/archive/master.zip
 
 ``` 
+
+
+## Note
+
+Tested both in Python2.x (2.7.15rc1) and Python 3.x (3.6.7)
