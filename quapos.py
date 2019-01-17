@@ -58,7 +58,7 @@ def drawMap(base_coords,calculated_coords,ratios):
 		lons.append(coord[1])
 	x,y = m(lons,lats)
 	xy = zip(x,y)
-	poly = Polygon( xy, facecolor='yellow', alpha=0.4 )
+	poly = Polygon( list(xy), facecolor='yellow', alpha=0.4 )
 	plt.gca().add_patch(poly)
 	plt.show()
 
@@ -105,15 +105,9 @@ def checkValues(r1, r2, r3, r4, D1, D2, D3, D4, D_diag_1, D_diag_2):
 	if(D_diag_2>(r2+r4)):
 		print("\nProblem: D_diag_2>(r2+r4) ")
 
-
+### TO DO
 def reorder(c1,c2,c3,c4,r1,r2,r3,r4):
 	coords = [c1,c2,c3,c4]
-	'''
-	aux1 = coords[0][0]
-	aux2 = coords[1][0]
-	aux3 = max(aux1, aux2)
-	aux4 = min(aux1, aux2)
-	'''
 	lats = []
 	lons = []
 	for coord in coords:
@@ -125,8 +119,8 @@ def reorder(c1,c2,c3,c4,r1,r2,r3,r4):
 	max_lon = max(lons)
 	max_lon_index = lons.index(max_lon)
 
-	print max_lat, max_lat_index
-	print max_lon, max_lon_index
+	print (max_lat, max_lat_index)
+	print (max_lon, max_lon_index)
 
 
 
@@ -143,10 +137,6 @@ def getCoords(args):
 	r3 = float(args.ratio3)
 	r4 = float(args.ratio4)
 	
-	reorder(c1,c2,c3,c4,r1,r2,r3,r4)
-
-	sys.exit(0)
-
 	# Distances between points	
 	D1 = vincenty(c1,c2).kilometers
 	D2 = vincenty(c2,c3).kilometers
