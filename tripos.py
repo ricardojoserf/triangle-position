@@ -107,8 +107,7 @@ def getCoords(args):
 	try:
 		if verbose:
 			print("Trying to plot results using Plotly")
-		drawMap_basemap(c1,c2,c3,calculatedCoord)
-		#drawMap(points)
+		drawMap(points)
 		print ("Calculated points:\nc1 = ("+args.coordenadas1+") \nc2 = ("+args.coordenadas2+") \nc3 = ("+args.coordenadas3+") \ncalculatedCoord = ("+str(calculatedCoord)+")")
 	except:
 		if verbose:

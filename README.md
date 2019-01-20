@@ -38,7 +38,11 @@ python tripos.py -c1 40.443580,-3.727077 -c2 40.452052,-3.725831 -c3 40.443587,-
 
 ![Screenshot](images/tri4.png)
 
-Result:
+Result using Plotly:
+
+![Screenshot](images/tri6.png)
+
+Result using Basemap:
 
 ![Screenshot](images/tri3.png)
 
@@ -67,9 +71,9 @@ Result:
 
 ## Installation
 
-- Fill config.py with Plotpy username and API Key
+- Fill config.py with Plotpy username and API Key -> Visit https://plot.ly/Auth/login/?next=%2Fsettings to sign up, visit "API Keys" and click "Regenerate Key"
 
-- Fill config.py with Mapbox Access Token
+- Fill config.py with Mapbox Access Token -> Visit https://www.mapbox.com/signup/?route-to=%22/account/access-tokens%22 and copy the Access Token
 
 - Run *sudo sh intall.sh* to install dependencies
 
