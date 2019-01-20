@@ -5,6 +5,7 @@ Triangle position given 3 coordinates and 3 radios or 4 coordinates and 4 radios
 
 - *quapos.py*: triangulate one AREA calculating 4 points from the 4 coordinates + 4 ratios (like executing tripos.py 4 times with 4 coordinates)
 
+--------------------------------------------
 
 ## 3 coordinates
 
@@ -87,6 +88,7 @@ Result using Plotly:
 
 - Run *sudo sh intall.sh* to install dependencies
 
+--------------------------------------------
 
 ## Note
 
