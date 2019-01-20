@@ -54,6 +54,11 @@ python quapos.py -c1 {coord_1} -c2 {coord_2} -c3 {coord_3} -c4 {coord_4} -r1 {ra
 -r4 {ratio_4}
 ```
 
+Coordinates and ratios must fit this scheme (yes, made with Paint), so the coordinate to calculate is "inside the box":
+
+![Screenshot](images/quatri4.png)
+
+
 ### Example:
 
 ```
