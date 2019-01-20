@@ -4,7 +4,7 @@ from mpl_toolkits.basemap import Basemap
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.patches import Polygon
-
+from plot import drawMap
 
 def get_args():
 	parser = argparse.ArgumentParser()
@@ -39,7 +39,7 @@ def generateCoord(coord_string):
 
 
 
-def drawMap(base_coords,calculated_coords,ratios):
+def drawMap_basemap(base_coords,calculated_coords,ratios):
 	deg_diff=1.5
 	m = Basemap(llcrnrlon=(float(base_coords[3][1])),llcrnrlat=(float(base_coords[3][0])-deg_diff),urcrnrlon=(float(base_coords[3][1])+deg_diff ),urcrnrlat=(float(base_coords[3][0]) +deg_diff), epsg=5520)
 	m.arcgisimage(service='ESRI_StreetMap_World_2D', xpixels = 1500, verbose= False)
@@ -179,8 +179,15 @@ def getCoords(args):
 		print ("\n[Red]\t c1 = ("+args.coordenadas1+") \n[Green]\t c2 = ("+args.coordenadas2+") \n[Blue]\t c3 = ("+args.coordenadas3+") \n[Purple] c4 = ("+args.coordenadas4+")")
 		print ("\n[Yellow] newCoord_1 = "+str(newCoord_1)+"\n[Yellow] newCoord_2 = "+str(newCoord_2)+"\n[Yellow] newCoord_3 = "+str(newCoord_3)+"\n[Yellow] newCoord_4 = "+str(newCoord_4) )
 		checkRatiosInside(ratios,D_diag_1,D_diag_2)
-	
-	drawMap(base_coords,calculated_coords,ratios)
+	try:
+		print("Trying to plot results using Plotly")
+		points = base_coords + calculated_coords
+		drawMap(points)
+
+	except:
+		print("\nIt was not possible to plot results using Plotly")
+		print("\nTrying to plot results using Matplotlib")
+		drawMap_basemap(base_coords,calculated_coords,ratios)
 
 
 def main():

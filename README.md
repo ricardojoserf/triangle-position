@@ -63,9 +63,14 @@ python quapos.py -c1 40.443587,-3.715664 -c2 40.451418,-3.717722 -c3 40.452052,-
 
 ![Screenshot](images/quatri2.png)
 
-Result:
+Result using Basemap (calculated area in yellow):
 
 ![Screenshot](images/quatri1.png)
+
+Result using Plotly:
+
+![Screenshot](images/quatri3.png)
+
 
 --------------------------------------------
 
