@@ -6,6 +6,7 @@ import numpy as np
 from matplotlib.patches import Polygon
 from plot import drawMap
 
+
 def get_args():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('-c1', '--coordenadas1', required=True, action='store', help='Coordenadas 1')
@@ -35,8 +36,6 @@ def generateCoord(coord_string):
 	lat = coord_string[:coord_string.index(",")]
 	lon = coord_string[(coord_string.index(",")+1):]
 	return( (lat,lon) )
-
-
 
 
 def drawMap_basemap(base_coords,calculated_coords,ratios):
@@ -105,6 +104,7 @@ def checkValues(r1, r2, r3, r4, D1, D2, D3, D4, D_diag_1, D_diag_2):
 	if(D_diag_2>(r2+r4)):
 		print("\nProblem: D_diag_2>(r2+r4) ")
 
+
 ### TO DO
 def reorder(c1,c2,c3,c4,r1,r2,r3,r4):
 	coords = [c1,c2,c3,c4]
@@ -121,7 +121,6 @@ def reorder(c1,c2,c3,c4,r1,r2,r3,r4):
 
 	print (max_lat, max_lat_index)
 	print (max_lon, max_lon_index)
-
 
 
 def getCoords(args):
@@ -194,6 +193,7 @@ def main():
 		args = get_args()	
 		getCoords(args)
 
-		
+
 if __name__ == "__main__":
     main()
+

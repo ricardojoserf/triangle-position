@@ -6,6 +6,7 @@ import numpy as np
 import sys
 from plot import drawMap
 
+
 def get_args():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('-c1', '--coordenadas1', required=True, action='store', help='Coordenadas 1')

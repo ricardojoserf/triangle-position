@@ -49,6 +49,7 @@ def createMap(points, mapbox_access_token):
     fig = dict(data=data, layout=layout)
     py.plot(fig, filename='Multiple Mapbox')
 
+
 def drawMap(points):
     mapbox_access_token = config.mapbox_access_token
     pyplot_user = config.pyplot_user
@@ -56,4 +57,3 @@ def drawMap(points):
     
     sign_in(pyplot_user, pyplot_pass)
     createMap(points, mapbox_access_token)
-
